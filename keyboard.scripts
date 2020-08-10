@@ -1,0 +1,12 @@
+#ANDROID
+
+flutter build apk --release 
+flutter run -d emulator-5554
+adb install build\app\outputs\apk\release\app-release.apk
+
+
+#Windows
+
+flutter build windows --release
+flutter run -d windows
+.\build\windows\runner\Release\wowo.exe
