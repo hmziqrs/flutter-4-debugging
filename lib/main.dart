@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:toast/toast.dart';
 
 void main() {
@@ -58,22 +59,22 @@ class _MyHomePageState extends State<MyHomePage> {
     return RawKeyboardListener(
       focusNode: FocusNode(),
       onKey: (event) {
-        final String keyEvent = event.logicalKey.debugName;
-        const String up = "Arrow Up";
-        const String down = "Arrow Down";
-        final String log = "KEY EVENT: $keyEvent $_counter";
-        print(log);
-        Toast.show(
-          log,
-          context,
-          duration: Toast.LENGTH_SHORT,
-          gravity: Toast.BOTTOM,
-        );
+        // final keyEvent = event.logicalKey;
+        // const bool up = "Arrow Up";
+        // const bool down = "Arrow Down";
+        // final String log = "KEY EVENT: $keyEvent $_counter";
+        // print(log);
+        // Toast.show(
+        //   log,
+        //   context,
+        //   duration: Toast.LENGTH_SHORT,
+        //   gravity: Toast.BOTTOM,
+        // );
 
-        if (keyEvent == up) {
+        if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
           this._incrementCounter();
         }
-        if (keyEvent == down) {
+        if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
           this._decrementCounter();
         }
       },
