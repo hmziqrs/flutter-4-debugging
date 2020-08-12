@@ -111,13 +111,20 @@ jobs:
         with:
           ref: gh-pages
           path: 'app'
-      - name: Run test driver
+      - name: Setup git configs
         run: |
           cd app
           git config --global user.name "hackerhgl"
           git config --global user.email "hackerhgl@gmail.com"
           git pull --rebase origin master
-          flutter drive -t test_driver/app.dart -d windows --dart-define="PLATFORM=windows"
+
+      - name: Run driver
+        run: |
+          cd app
+          flutter drive -t test_driver/app.dart -d windows --dart-define="PLATFORM=windows" -v
+
+      - name: Push screenshots
+        run: |
           git add .
           git commit -m "Windows test driver"
           git push origin pages
