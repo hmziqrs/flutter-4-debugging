@@ -96,7 +96,6 @@ jobs:
           cd flutter
           git checkout c8d051295a
       - run: echo ::add-path::"$(pwd)\flutter\bin"
-      - run: flutter precache
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -131,8 +130,8 @@ jobs:
         run: |
           cd app
           git add .
-          git commit -m "Windows test driver"
-          git push origin pages
+          git commit -m "Screenshots by test driver [Windows]"
+          git push origin gh-pages
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
