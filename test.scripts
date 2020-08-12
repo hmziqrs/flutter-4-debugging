@@ -13,3 +13,6 @@ flutter run -t .\lib\main.dart -d windows --device-vmservice-port 8999 --host-vm
 
 call .\test_driver\libs\windowMode.bat -pid 7548 -mode maximized [CMD]
 cmd.exe /c "call .\test_driver\libs\windowMode.bat -pid 7548 -mode maximized" [PS]
+
+
+git add .; git commit -m "Github Actions patch"; git tag v1.0.0 -f; git push origin master; git push origin v1.0.0 -f
