@@ -21,18 +21,19 @@ main(List<String> args) async {
 
     test('Chunk testing', () async {
       await driver.runUnsynchronized(() async {
-        final button = find.byValueKey("button");
+        final addButton = find.byValueKey("button_add");
+        final removeButton = find.byValueKey("button_remove");
         print("TEST 1");
         await Future.delayed(Duration(seconds: 5));
         print("AWAIT WORRKS");
         await Future.delayed(Duration(seconds: 5));
-        await driver.tap(button);
-        await driver.tap(button);
-        await driver.tap(button);
+        await driver.tap(addButton);
+        await driver.tap(addButton);
+        await driver.tap(addButton);
         await Future.delayed(Duration(seconds: 5));
-        await driver.tap(button);
-        await driver.tap(button);
-        await driver.tap(button);
+        await driver.tap(removeButton);
+        await driver.tap(removeButton);
+        await driver.tap(removeButton);
       });
     }, timeout: Timeout.none);
   });

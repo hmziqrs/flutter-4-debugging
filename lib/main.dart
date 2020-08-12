@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Container(width: 16),
                 FloatingActionButton(
-                  key: Key("button_minus"),
+                  key: Key("button_remove"),
                   onPressed: _decrementCounter,
                   tooltip: 'Decrement',
                   child: Icon(Icons.remove),
