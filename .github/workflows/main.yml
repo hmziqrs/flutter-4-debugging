@@ -12,7 +12,7 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout 54c9441723
+          git checkout c8d051295a
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - run: flutter precache
       - uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout 54c9441723
+          git checkout c8d051295a
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - run: flutter precache
       - uses: actions/setup-java@v1
@@ -68,7 +68,7 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout 54c9441723
+          git checkout c8d051295a
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - run: flutter precache
       - uses: actions/checkout@v2
@@ -94,7 +94,7 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout 54c9441723
+          git checkout c8d051295a
       - run: echo ::add-path::"$(pwd)\flutter\bin"
       - run: flutter precache
       - uses: actions/checkout@v2
