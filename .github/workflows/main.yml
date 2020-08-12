@@ -99,6 +99,7 @@ jobs:
       - run: flutter precache
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           path: 'app'
       - run: |
           cd app
@@ -107,15 +108,17 @@ jobs:
           flutter build windows --release
           cd build\windows\runner
           Compress-Archive -Path Release -DestinationPath windows-release.zip
-      - uses: actions/checkout@v2
-        with:
-          ref: gh-pages
-          path: 'app'
+
       - name: Setup git configs
         run: |
           cd app
           git config --global user.name "hackerhgl"
           git config --global user.email "hackerhgl@gmail.com"
+
+      - name: Sync branches
+        run: |
+          cd app
+          git checkout gh-pages
           git pull --rebase origin master
 
       - name: Run driver
