@@ -103,6 +103,7 @@ jobs:
       - run: |
           cd app
           flutter config --enable-windows-desktop
+          flutter config ---no-enable-android
           flutter pub get
           flutter build windows --release
           cd build\windows\runner
