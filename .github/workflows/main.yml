@@ -5,87 +5,87 @@ on:
 
 name: Release Builds
 jobs:
-  linux:
-    name: Linux
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          git clone https://github.com/flutter/flutter.git
-          cd flutter
-          git checkout c8d051295a
-      - run: echo ::add-path::`pwd`"/flutter/bin"
-      - run: flutter precache
-      - uses: actions/checkout@v2
-        with:
-          path: 'app'
-      - name: Install required build tools for linux
-        run: sudo apt-get update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev
-      - run: |
-          cd app
-          flutter config --enable-linux-desktop
-          flutter pub get
-          flutter build linux --release
-          cd build/linux/release
-          zip -r linux-release.zip bundle
-      - name: Create linux Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: 'app/build/linux/release/linux-release.zip'
-          token: ${{ secrets.TOKEN }}
-          allowUpdates: true
+  # linux:
+  #   name: Linux
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: |
+  #         git clone https://github.com/flutter/flutter.git
+  #         cd flutter
+  #         git checkout c8d051295a
+  #     - run: echo ::add-path::`pwd`"/flutter/bin"
+  #     - run: flutter precache
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         path: 'app'
+  #     - name: Install required build tools for linux
+  #       run: sudo apt-get update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev
+  #     - run: |
+  #         cd app
+  #         flutter config --enable-linux-desktop
+  #         flutter pub get
+  #         flutter build linux --release
+  #         cd build/linux/release
+  #         zip -r linux-release.zip bundle
+  #     - name: Create linux Release
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         artifacts: 'app/build/linux/release/linux-release.zip'
+  #         token: ${{ secrets.TOKEN }}
+  #         allowUpdates: true
 
-  android:
-    name: Android
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          git clone https://github.com/flutter/flutter.git
-          cd flutter
-          git checkout c8d051295a
-      - run: echo ::add-path::`pwd`"/flutter/bin"
-      - run: flutter precache
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      - uses: actions/checkout@v2
-        with:
-          path: 'app'
-      - run: |
-          cd app
-          flutter pub get
-          flutter build apk -t lib/main.dart --release
-      - name: Create Android Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: 'app/build/app/outputs/apk/release/app-release.apk'
-          token: ${{ secrets.TOKEN }}
-          allowUpdates: true
+  # android:
+  #   name: Android
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: |
+  #         git clone https://github.com/flutter/flutter.git
+  #         cd flutter
+  #         git checkout c8d051295a
+  #     - run: echo ::add-path::`pwd`"/flutter/bin"
+  #     - run: flutter precache
+  #     - uses: actions/setup-java@v1
+  #       with:
+  #         java-version: '12.x'
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         path: 'app'
+  #     - run: |
+  #         cd app
+  #         flutter pub get
+  #         flutter build apk -t lib/main.dart --release
+  #     - name: Create Android Release
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         artifacts: 'app/build/app/outputs/apk/release/app-release.apk'
+  #         token: ${{ secrets.TOKEN }}
+  #         allowUpdates: true
 
-  macos:
-    name: MacOS
-    runs-on: macos-latest
-    steps:
-      - run: |
-          git clone https://github.com/flutter/flutter.git
-          cd flutter
-          git checkout c8d051295a
-      - run: echo ::add-path::`pwd`"/flutter/bin"
-      - run: flutter precache
-      - uses: actions/checkout@v2
-        with:
-          path: 'app'
-      - run: |
-          cd app
-          flutter config --enable-macos-desktop
-          flutter pub get
-          flutter build macos --release
-          cd build/macos/Build/Products/Release
-          ditto -c -k --sequesterRsrc --keepParent wowo.app macos-release.zip
-      - uses: ncipollo/release-action@v1
-        with:
-          artifacts: 'app/build/macOS/Build/Products/Release/macos-release.zip'
-          token: ${{ secrets.TOKEN }}
-          allowUpdates: true
+  # macos:
+  #   name: MacOS
+  #   runs-on: macos-latest
+  #   steps:
+  #     - run: |
+  #         git clone https://github.com/flutter/flutter.git
+  #         cd flutter
+  #         git checkout c8d051295a
+  #     - run: echo ::add-path::`pwd`"/flutter/bin"
+  #     - run: flutter precache
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         path: 'app'
+  #     - run: |
+  #         cd app
+  #         flutter config --enable-macos-desktop
+  #         flutter pub get
+  #         flutter build macos --release
+  #         cd build/macos/Build/Products/Release
+  #         ditto -c -k --sequesterRsrc --keepParent wowo.app macos-release.zip
+  #     - uses: ncipollo/release-action@v1
+  #       with:
+  #         artifacts: 'app/build/macOS/Build/Products/Release/macos-release.zip'
+  #         token: ${{ secrets.TOKEN }}
+  #         allowUpdates: true
 
   windows:
     name: Windows
@@ -107,6 +107,20 @@ jobs:
           flutter build windows --release
           cd build\windows\runner
           Compress-Archive -Path Release -DestinationPath windows-release.zip
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: 'app'
+      - name: Run test driver
+        run: |
+          cd app
+          git config --global user.name "hackerhgl"
+          git config --global user.email "hackerhgl@gmail.com"
+          git pull --rebase origin master
+          flutter drive -t test_driver/app.dart -d windows --dart-define="PLATFORM=windows"
+          git add .
+          git commit -m "Windows test driver"
+          git push origin pages
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
