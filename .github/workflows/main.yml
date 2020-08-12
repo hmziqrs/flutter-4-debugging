@@ -121,7 +121,9 @@ jobs:
           git checkout gh-pages
           git stash
       - name: Switch branches
-        run: git pull --rebase origin master
+        run: |
+          cd app
+          git pull --rebase origin master
 
       - name: Run driver
         run: |
