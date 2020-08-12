@@ -115,12 +115,13 @@ jobs:
           git config --global user.name "hackerhgl"
           git config --global user.email "hackerhgl@gmail.com"
 
-      - name: Sync branches
+      - name: Switch branches
         run: |
           cd app
           git checkout gh-pages
           git stash
-          git pull --rebase origin master
+      - name: Switch branches
+        run: git pull --rebase origin master
 
       - name: Run driver
         run: |
