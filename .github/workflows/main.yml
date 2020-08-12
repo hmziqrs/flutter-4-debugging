@@ -105,9 +105,9 @@ jobs:
           flutter config --enable-windows-desktop
           flutter config ---no-enable-android
           flutter pub get
-          flutter build windows --release
-          cd build\windows\runner
-          Compress-Archive -Path Release -DestinationPath windows-release.zip
+      # flutter build windows --release
+      # cd build\windows\runner
+      # Compress-Archive -Path Release -DestinationPath windows-release.zip
 
       - name: Setup git configs
         run: |
