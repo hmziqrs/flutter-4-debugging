@@ -115,12 +115,12 @@ jobs:
           git config --global user.name "hackerhgl"
           git config --global user.email "hackerhgl@gmail.com"
 
-      - name: Switch branches
+      - name: Switch branch
         run: |
           cd app
           git checkout gh-pages
           git stash
-      - name: Switch branches
+      - name: Synch branch
         run: |
           cd app
           git pull --rebase origin master
@@ -130,11 +130,14 @@ jobs:
           cd app
           flutter drive -t test_driver/app.dart -d windows --dart-define="PLATFORM=windows" -v
 
-      - name: Push screenshots
+      - name: Commit new changes
         run: |
           cd app
           git add .
           git commit -m "Screenshots by test driver [Windows]"
+      - name: Push new changes
+        run: |
+          cd app
           git push origin gh-pages
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
