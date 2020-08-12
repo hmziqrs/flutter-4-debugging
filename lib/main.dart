@@ -59,18 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return RawKeyboardListener(
       focusNode: FocusNode(),
       onKey: (event) {
-        // final keyEvent = event.logicalKey;
-        // const bool up = "Arrow Up";
-        // const bool down = "Arrow Down";
-        // final String log = "KEY EVENT: $keyEvent $_counter";
-        // print(log);
-        // Toast.show(
-        //   log,
-        //   context,
-        //   duration: Toast.LENGTH_SHORT,
-        //   gravity: Toast.BOTTOM,
-        // );
-
         if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
           this._incrementCounter();
         }
@@ -93,11 +81,29 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          key: Key("button"),
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
+        floatingActionButton: Align(
+          alignment: Alignment.bottomRight,
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  key: Key("button_add"),
+                  onPressed: _incrementCounter,
+                  tooltip: 'Increment',
+                  child: Icon(Icons.add),
+                ),
+                Container(width: 16),
+                FloatingActionButton(
+                  key: Key("button_minus"),
+                  onPressed: _decrementCounter,
+                  tooltip: 'Decrement',
+                  child: Icon(Icons.remove),
+                ),
+              ],
+            ),
+          ),
         ), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
