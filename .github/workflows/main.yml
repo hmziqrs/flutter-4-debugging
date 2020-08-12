@@ -120,10 +120,17 @@ jobs:
           cd app
           git checkout gh-pages
           git stash
-      - name: Synch branch
+      - name: Synch gh-pages
+        run: |
+          git pull --rebase gh-pages master
+          cd app
+          git stash
+
+      - name: Synch from master
         run: |
           cd app
           git pull --rebase origin master
+          git stash
 
       - name: Run driver
         run: |
@@ -138,7 +145,7 @@ jobs:
       - name: Push new changes
         run: |
           cd app
-          git push origin gh-pages
+          git push origin gh-pages -f
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
