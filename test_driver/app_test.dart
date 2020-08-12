@@ -33,16 +33,11 @@ main(List<String> args) async {
       await driver.clearTimeline();
     });
 
-    // Close the connection to the driver after the tests have completed.
     tearDownAll(() async {
       await TestActions.delay(8000);
 
       driver?.close();
     });
-
-    // test("REAL TEST", () async {
-
-    // }, timeout: Timeout.none);
 
     test('Chunk testing', () async {
       await driver.runUnsynchronized(() async {
