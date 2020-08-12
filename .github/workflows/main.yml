@@ -122,7 +122,7 @@ jobs:
           git stash
       - name: Synch gh-pages
         run: |
-          git pull --rebase gh-pages master
+          git pull --rebase origin gh-pages
           cd app
           git stash
 
