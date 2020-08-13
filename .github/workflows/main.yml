@@ -100,7 +100,10 @@ jobs:
           git stash
 
       - name: Permission fix
-        run: chmod -R +rw app
+        run: |
+          chmod -R +rw app
+          chmod u+x ./app/test_driver/app.dart
+          chmod u+x ./app/test_driver/libs/screenshot-macos
 
       - name: Run driver
         run: |
