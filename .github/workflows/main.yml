@@ -119,7 +119,7 @@ jobs:
       - name: Push new changes
         run: |
           cd app
-          git push origin gh-pages
+          git push origin gh-pages -f
 
       - uses: ncipollo/release-action@v1
         with:
