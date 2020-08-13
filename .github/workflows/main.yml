@@ -73,6 +73,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: 'app'
+          fetch-depth: 0
       - run: |
           cd app
           flutter config --enable-macos-desktop
@@ -107,7 +108,7 @@ jobs:
       - name: Run driver
         run: |
           cd app
-          flutter drive -t test_driver/app.dart -d macos --dart-define="PLATFORM=macos" -v
+          flutter drive -t test_driver/app.dart -d mac --dart-define="PLATFORM=macos" -v
 
       - name: Commit new changes
         run: |
@@ -125,70 +126,63 @@ jobs:
           artifacts: 'app/build/macOS/Build/Products/Release/macos-release.zip'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
-
-  windows:
-    name: Windows
-    runs-on: windows-latest
-    steps:
-      - run: |
-          git clone https://github.com/flutter/flutter.git
-          cd flutter
-          git checkout c8d051295a
-      - run: echo ::add-path::"$(pwd)\flutter\bin"
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          path: 'app'
-      - run: |
-          cd app
-          flutter config --enable-windows-desktop
-          flutter config ---no-enable-android
-          flutter pub get
-        # flutter build windows --release
-        # cd build\windows\runner
-        # Compress-Archive -Path Release -DestinationPath windows-release.zip
-      - name: Setup git configs
-        run: |
-          cd app
-          git config --global user.name "hackerhgl"
-          git config --global user.email "hackerhgl@gmail.com"
-
-      - name: Switch branch
-        run: |
-          cd app
-          git checkout gh-pages
-          git stash
-      - name: Synch gh-pages
-        run: |
-          git pull --rebase origin gh-pages
-          cd app
-          git stash
-
-      - name: Synch from master
-        run: |
-          cd app
-          git pull --rebase origin master
-          git stash
-
-      - name: Run driver
-        run: |
-          cd app
-          flutter drive -t test_driver/app.dart -d windows --dart-define="PLATFORM=windows" -v
-
-      - name: Commit new changes
-        run: |
-          cd app
-          git add .
-          git commit -m "Screenshots by test driver [Windows]"
-
-      - name: Push new changes
-        run: |
-          cd app
-          git push origin gh-pages -f
-
-      - name: Windows release build for github
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: 'app\build\windows\runner\windows-release.zip'
-          token: ${{ secrets.TOKEN }}
-          allowUpdates: true
+  # windows:
+  #   name: Windows
+  #   runs-on: windows-latest
+  #   steps:
+  #     - run: |
+  #         git clone https://github.com/flutter/flutter.git
+  #         cd flutter
+  #         git checkout c8d051295a
+  #     - run: echo ::add-path::"$(pwd)\flutter\bin"
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #         path: 'app'
+  #     - run: |
+  #         cd app
+  #         flutter config --enable-windows-desktop
+  #         flutter config ---no-enable-android
+  #         flutter pub get
+  #       # flutter build windows --release
+  #       # cd build\windows\runner
+  #       # Compress-Archive -Path Release -DestinationPath windows-release.zip
+  #     - name: Setup git configs
+  #       run: |
+  #         cd app
+  #         git config --global user.name "hackerhgl"
+  #         git config --global user.email "hackerhgl@gmail.com"
+  #     - name: Switch branch
+  #       run: |
+  #         cd app
+  #         git checkout gh-pages
+  #         git stash
+  #     - name: Synch gh-pages
+  #       run: |
+  #         git pull --rebase origin gh-pages
+  #         cd app
+  #         git stash
+  #     - name: Synch from master
+  #       run: |
+  #         cd app
+  #         git pull --rebase origin master
+  #         git stash
+  #     - name: Run driver
+  #       run: |
+  #         cd app
+  #         flutter drive -t test_driver/app.dart -d windows --dart-define="PLATFORM=windows" -v
+  #     - name: Commit new changes
+  #       run: |
+  #         cd app
+  #         git add .
+  #         git commit -m "Screenshots by test driver [Windows]"
+  #     - name: Push new changes
+  #       run: |
+  #         cd app
+  #         git push origin gh-pages -f
+  #     - name: Windows release build for github
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         artifacts: 'app\build\windows\runner\windows-release.zip'
+  #         token: ${{ secrets.TOKEN }}
+  #         allowUpdates: true
