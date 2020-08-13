@@ -40,6 +40,13 @@ abstract class Utils {
 
   static initMaxMacos() async {
     final rawCode = Process.runSync(
+      "osascript",
+      ["-e", 'activate application "wowo"'],
+      runInShell: true,
+    );
+
+    return;
+    final rawCode = Process.runSync(
       "/usr/bin/osascript",
       ["-e", "tell application \"Safari\""],
       runInShell: true,

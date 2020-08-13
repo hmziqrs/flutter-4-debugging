@@ -54,9 +54,9 @@ void main(List<String> args) async {
     Utils.initMaxWindowsCmdow();
     delay = 8;
   }
-  // if (platform == "macos") {
-  //   Utils.initMaxMacos();
-  // }
+  if (platform == "macos") {
+    Utils.initMaxMacos();
+  }
   // This is for safety so app is rendered properly before test driver connects with the app instance
   await Future.delayed(Duration(seconds: delay));
 }
