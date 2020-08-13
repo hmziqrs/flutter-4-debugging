@@ -14,9 +14,14 @@ abstract class Screenshot {
     final int defaultDelay = 1000;
     await Future.delayed(Duration(milliseconds: defaultDelay + pre));
     switch (platform) {
+      case "macos":
+        await screenshotMacos(label);
+        break;
+
       case "linux":
         await screenshotLinux(label);
         break;
+
       case "windows":
         screenshotWindows(label);
         break;
@@ -29,16 +34,26 @@ abstract class Screenshot {
     await Future.delayed(Duration(milliseconds: defaultDelay + post));
   }
 
+  static Future<void> screenshotMacos(String label) async {
+    try {
+      final libPath = "./../../test_driver/libs/screenshot-macos";
+      final directory = "screenshots/macos";
+
+      Process.runSync(
+        libPath,
+        [label],
+        workingDirectory: directory,
+      );
+    } catch (e) {
+      print(e.toString());
+      print("ERROR CAN'T TAKE $label screenshot");
+    }
+  }
+
   static Future<void> screenshotLinux(String label) async {
     try {
       final libPath = "./../../test_driver/libs/screenshot-linux";
       final directory = "screenshots/linux";
-
-      final obj = Process.runSync("pwd", []);
-
-      print("PWD: ${obj.stdout}");
-      print("ERROR");
-      print(obj.stderr);
 
       Process.runSync(
         libPath,

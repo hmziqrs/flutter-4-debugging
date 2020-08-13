@@ -38,6 +38,14 @@ abstract class Utils {
     });
   }
 
+  static initMaxMacos() async {
+    final rawCode = Process.runSync(
+      "/usr/bin/osascript",
+      ["-e", "tell application \"Safari\""],
+      runInShell: true,
+    );
+  }
+
   static initMaxWindowsCmdow() async {
     final rawCode = Process.runSync(
       ".\\test_driver\\libs\\cmdow.exe",
