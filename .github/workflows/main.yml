@@ -72,8 +72,8 @@ jobs:
       - run: echo ::add-path::`pwd`"/flutter/bin"
       - uses: actions/checkout@v2
         with:
-          path: 'app'
           fetch-depth: 0
+          path: 'app'
       - run: |
           cd app
           flutter config --enable-macos-desktop
@@ -97,7 +97,7 @@ jobs:
         run: |
           cd app
           git add .
-          git commit -m "Screenshots by test driver [MacOS]"
+          git commit -am "Screenshots by test driver [MacOS]"
 
       - name: Push new changes
         run: |
