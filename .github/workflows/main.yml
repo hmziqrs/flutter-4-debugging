@@ -95,8 +95,8 @@ jobs:
           git stash
       - name: Synch gh-pages
         run: |
-          git pull --rebase origin gh-pages
           cd app
+          git pull --rebase origin gh-pages
           git stash
 
       - name: Synch from master
@@ -159,8 +159,8 @@ jobs:
   #         git stash
   #     - name: Synch gh-pages
   #       run: |
-  #         git pull --rebase origin gh-pages
   #         cd app
+  #         git pull --rebase origin gh-pages
   #         git stash
   #     - name: Synch from master
   #       run: |
