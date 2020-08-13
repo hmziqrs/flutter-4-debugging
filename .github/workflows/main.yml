@@ -88,6 +88,20 @@ jobs:
           git config --global user.name "hackerhgl"
           git config --global user.email "hackerhgl@gmail.com"
 
+      - name: Switch branch
+        run: |
+          cd app
+          git checkout gh-pages
+          git stash
+      - name: Synch gh-pages
+        run: |
+          cd app
+          git pull --rebase origin master
+          git stash
+
+      - name: Permission fix
+        run: chmod -R +rw app
+
       - name: Run driver
         run: |
           cd app
