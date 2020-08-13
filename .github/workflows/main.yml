@@ -93,11 +93,11 @@ jobs:
           cd app
           git checkout gh-pages
           git stash
-      - name: Synch gh-pages
-        run: |
-          cd app
-          git pull --rebase origin gh-pages
-          git stash
+      # - name: Synch gh-pages
+      #   run: |
+      #     cd app
+      #     git pull --rebase origin gh-pages1
+      #     git stash
 
       - name: Synch from master
         run: |
