@@ -39,11 +39,22 @@ abstract class Utils {
   }
 
   static initMaxMacos() async {
-    final rawCode = Process.runSync(
+    final rawCode1 = Process.runSync(
       "osascript",
       ["-e", "'tell application \"wowo\" to activate'"],
       runInShell: true,
     );
+
+    final rawCode2 = Process.runSync(
+      "osascript",
+      ["-e", "tell application \"wowo\" to activate"],
+      runInShell: true,
+    );
+
+    print("CODE 1");
+    print(rawCode1.stdout);
+    print("CODE 2");
+    print(rawCode2.stdout);
 
     // final rawCode = Process.runSync(
     //   "/usr/bin/osascript",
