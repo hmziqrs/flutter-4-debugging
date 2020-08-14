@@ -106,10 +106,18 @@ jobs:
           chmod u+x ./app/test_driver/app.dart
           chmod u+x ./app/test_driver/libs/screenshot-macos
 
+      - name: Clean screenshots
+        run: rm -rf app/screenshots/macos
+
       - name: Run driver
         run: |
           cd app
-          flutter drive -t test_driver/app.dart -d mac --dart-define="PLATFORM=macos" -v
+          flutter drive -t test_driver/app.dart -d mac --dart-define="PLATFORM=macos"
+
+      - name: Add timestamp
+        run: |
+          cd app/screenshots/macos
+          echo $(date "+%d-%m-%Y %T%H:%M:%S%z") > generated.timestamp
 
       - name: Commit new changes
         run: |
