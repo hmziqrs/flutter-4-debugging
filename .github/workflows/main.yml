@@ -73,6 +73,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          ref: 'master'
           path: 'app'
       - run: |
           cd app
@@ -88,16 +89,16 @@ jobs:
           git config --global user.name "hackerhgl"
           git config --global user.email "hackerhgl@gmail.com"
 
-      - name: Switch branch
-        run: |
-          cd app
-          git checkout gh-pages
-          git stash
-      - name: Synch gh-pages
-        run: |
-          cd app
-          git pull --rebase origin master
-          git stash
+      # - name: Switch branch
+      #   run: |
+      #     cd app
+      #     git checkout gh-pages
+      #     git stash
+      # - name: Synch gh-pages
+      #   run: |
+      #     cd app
+      #     git pull --rebase origin master
+      #     git stash
 
       - name: Permission fix
         run: |
@@ -119,7 +120,7 @@ jobs:
       - name: Push new changes
         run: |
           cd app
-          git push origin gh-pages -f
+          git push origin master
 
       - uses: ncipollo/release-action@v1
         with:
