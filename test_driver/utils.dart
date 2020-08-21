@@ -46,12 +46,10 @@ abstract class Utils {
       print(pwd.stderr);
       final libPath = "robot-go-mac";
       final arguments = ["maximize", "wowo", "com.example.wowo"];
-      final directory = "screenshots/macos";
 
       Process.runSync(
         libPath,
         arguments,
-        workingDirectory: directory,
       );
     } catch (e) {
       print(e.toString());
