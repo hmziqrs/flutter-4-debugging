@@ -14,6 +14,8 @@ main(List<String> args) async {
     double height;
 
     setUpAll(() async {
+      Utils.initMaxMacos();
+      TestActions.delay(8000);
       driver = await FlutterDriver.connect();
 
       final platform = await driver.requestData("platform");

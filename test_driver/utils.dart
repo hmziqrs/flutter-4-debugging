@@ -45,7 +45,7 @@ abstract class Utils {
       print("PWD ERROR");
       print(pwd.stderr);
 
-      final test = Process.runSync("cd", ["~/", "&&", "pwd"]);
+      final test = Process.runSync("cd", ["~", "&&", "pwd"]);
       print(test.stdout);
       print("test ERROR");
       print(test.stderr);
@@ -61,7 +61,7 @@ abstract class Utils {
       Process.runSync(
         libPath,
         arguments,
-        runInShell: true,
+        runInShell: false,
       );
     } catch (e) {
       print(e.toString());

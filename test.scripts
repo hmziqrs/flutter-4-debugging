@@ -18,13 +18,10 @@ cmd.exe /c "call .\test_driver\libs\windowMode.bat -pid 7548 -mode maximized" [P
 
 git add .; git commit -m "Github Actions patch"; git tag v1.0.0 -f; git push origin master; git push origin v1.0.0 -f
 
-<<<<<<< Updated upstream
 git add .; git commit -m "Github Actions macos test driver experiment"; git tag v1.0.2 -f; git push origin master; git push origin v1.0.2 -f
 
 git add .; git commit -m "Github Actions macos test driver experiment"; git tag v1.0.2 -f; git push ssh master; git push ssh v1.0.2 -f
 
 
 git add . && git commit -m "Github Actions macos test driver experiment" && git tag v1.0.2 -f && git push origin master && git push origin v1.0.2 -f
-=======
 git add .; git commit -m "Github Actions windows test driver experiment"; git tag v1.0.0 -f; git push origin master; git push origin v1.0.0 -f
->>>>>>> Stashed changes
