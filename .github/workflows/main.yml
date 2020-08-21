@@ -106,6 +106,9 @@ jobs:
           chmod u+x ./app/test_driver/app.dart
           chmod u+x ./app/test_driver/libs/robot-go-mac
 
+      - name: PWD
+        run: pwd
+
       - name: Clean screenshots
         run: rm -rf app/screenshots/macos
 
