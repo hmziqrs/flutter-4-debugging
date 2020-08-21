@@ -39,28 +39,18 @@ abstract class Utils {
   }
 
   static initMaxMacos() async {
-    final rawCode1 = Process.runSync(
-      "osascript",
-      ["-e", "'tell application \"wowo\" to activate'"],
-    );
+    try {
+      final libPath = "./test_driver/libs/robot-go-mac";
+      final arguments = ["maximize", "wowo", "com.example.wowo"];
 
-    final rawCode2 = Process.runSync(
-      "osascript",
-      ["-e", "tell application \"wowo\" to activate"],
-    );
-
-    print("CODE 1");
-    print(rawCode1.stdout);
-    print(rawCode1.stderr);
-    print("CODE 2");
-    print(rawCode2.stdout);
-    print(rawCode2.stderr);
-
-    // final rawCode = Process.runSync(
-    //   "/usr/bin/osascript",
-    //   ["-e", "tell application \"Safari\""],
-    //   runInShell: true,
-    // );
+      Process.runSync(
+        libPath,
+        arguments,
+      );
+    } catch (e) {
+      print(e.toString());
+      print("ERROR CAN'T MAXIMIZE THE APP");
+    }
   }
 
   static initMaxWindowsCmdow() async {
