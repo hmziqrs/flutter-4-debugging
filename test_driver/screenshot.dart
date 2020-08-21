@@ -37,7 +37,8 @@ abstract class Screenshot {
   static Future<void> screenshotMacos(String label) async {
     try {
       final directory = "screenshots/macos";
-      final libPath = "../../test_driver/libs/robot-go-mac";
+      // final libPath = "../../test_driver/libs/robot-go-mac";
+      final libPath = "robot-go-mac";
       final arguments = ["screenshot", label];
 
       Process.runSync(

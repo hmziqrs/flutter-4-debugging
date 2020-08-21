@@ -79,13 +79,19 @@ jobs:
           path: 'app'
 
       - name: Add test libs to path
-        run: echo ::add-path::`pwd`"/app/test_driver/libs"
+        run: |
+          echo ::add-path::`pwd`"/app/test_driver/libs"
+          echo 'export PATH='`pwd`'/app/test_driver/libs:$PATH' >> ~/.bashrc
+          source ~/.bashrc
+          cat ~/.bashrc
 
-      - run: |
+      - name: Download flutter build tools
+        run: |
           cd app
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
           flutter pub get
+          flutter precache
         # flutter build macos --release
         # cd build/macos/Build/Products/Release
         # ditto -c -k --sequesterRsrc --keepParent wowo.app macos-release.zip
