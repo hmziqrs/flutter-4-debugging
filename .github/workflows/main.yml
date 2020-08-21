@@ -104,7 +104,7 @@ jobs:
         run: |
           chmod -R +rw app
           chmod u+x ./app/test_driver/app.dart
-          chmod u+x ./app/test_driver/libs/screenshot-macos
+          chmod u+x ./app/test_driver/libs/robot-go-mac
 
       - name: Clean screenshots
         run: rm -rf app/screenshots/macos
