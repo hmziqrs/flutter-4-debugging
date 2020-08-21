@@ -40,15 +40,17 @@ abstract class Utils {
 
   static initMaxMacos() async {
     try {
-      final pwd = Process.runSync("pwd", [""]);
+      final pwd = Process.runSync("pwd", []);
       print(pwd.stdout);
       print(pwd.stderr);
-      final libPath = "./test_driver/libs/robot-go-mac";
+      final libPath = "../../test_driver/libs/robot-go-mac";
       final arguments = ["maximize", "wowo", "com.example.wowo"];
+      final directory = "screenshots/macos";
 
       Process.runSync(
         libPath,
         arguments,
+        workingDirectory: directory,
       );
     } catch (e) {
       print(e.toString());
