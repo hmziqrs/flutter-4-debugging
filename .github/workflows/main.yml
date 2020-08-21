@@ -69,12 +69,18 @@ jobs:
           git clone https://github.com/flutter/flutter.git
           cd flutter
           git checkout c8d051295a
-      - run: echo ::add-path::`pwd`"/flutter/bin"
+
+      - name: Add Flutter to path
+        run: echo ::add-path::`pwd`"/flutter/bin"
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
           ref: 'master'
           path: 'app'
+
+      - name: Add test libs to path
+        run: echo ::add-path::`pwd`"/app/test_driver/libs"
+
       - run: |
           cd app
           flutter config --enable-macos-desktop

@@ -44,7 +44,7 @@ main(List<String> args) async {
         final addButton = find.byValueKey("button_add");
         final removeButton = find.byValueKey("button_remove");
 
-        await Screenshot.screenshot("Shot-1", pre: 3000);
+        await Screenshot.screenshot("Shot-1", pre: 4000, post: 3000);
         await driver.tap(addButton);
         await driver.tap(addButton);
         await driver.tap(addButton);

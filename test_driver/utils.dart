@@ -44,7 +44,7 @@ abstract class Utils {
       print(pwd.stdout);
       print("PWD ERROR");
       print(pwd.stderr);
-      final libPath = "../../test_driver/libs/robot-go-mac";
+      final libPath = "robot-go-mac";
       final arguments = ["maximize", "wowo", "com.example.wowo"];
       final directory = "screenshots/macos";
 
