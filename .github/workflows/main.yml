@@ -89,6 +89,9 @@ jobs:
           git config --global user.name "hackerhgl"
           git config --global user.email "hackerhgl@gmail.com"
 
+      - name: Disable Screenshot Thumbnails
+        run: defaults write com.apple.screencapture show-thumbnail -bool FALSE
+
       # - name: Switch branch
       #   run: |
       #     cd app
