@@ -61,6 +61,7 @@ abstract class Utils {
       Process.runSync(
         libPath,
         arguments,
+        runInShell: true,
       );
     } catch (e) {
       print(e.toString());
