@@ -117,9 +117,9 @@ jobs:
       - name: Permission fix
         run: |
           chmod -R +rw app
+          chmod u+x ./app/test_driver/app.dart
+          chmod u+x ./app/test_driver/libs/robot-go-mac
 
-        # chmod u+x ./app/test_driver/app.dart
-        # chmod u+x ./app/test_driver/libs/robot-go-mac
       - name: PWD
         run: pwd
 

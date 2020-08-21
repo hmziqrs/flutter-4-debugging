@@ -44,6 +44,12 @@ abstract class Utils {
       print(pwd.stdout);
       print("PWD ERROR");
       print(pwd.stderr);
+
+      final test = Process.runSync("cd", ["~/", "&&", "pwd"]);
+      print(test.stdout);
+      print("test ERROR");
+      print(test.stderr);
+
       final libPath = "sudo";
       final arguments = [
         "robot-go-mac",
