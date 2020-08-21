@@ -40,29 +40,16 @@ abstract class Utils {
 
   static initMaxMacos() async {
     try {
-      final pwd = Process.runSync("pwd", []);
-      print(pwd.stdout);
-      print("PWD ERROR");
-      print(pwd.stderr);
+      final libPath = "robot-go-mac";
+      final arguments = ["maximize", "wowo", "com.example.wowo"];
 
-      final test = Process.runSync("cd", ["~", "&&", "pwd"]);
-      print(test.stdout);
-      print("test ERROR");
-      print(test.stderr);
-
-      final libPath = "sudo";
-      final arguments = [
-        "robot-go-mac",
-        "maximize",
-        "wowo",
-        "com.example.wowo"
-      ];
-
-      Process.runSync(
+      final process = Process.runSync(
         libPath,
         arguments,
-        runInShell: false,
       );
+      print(process.stdout);
+      print("process error");
+      print(process.stderr);
     } catch (e) {
       print(e.toString());
       print("ERROR CAN'T MAXIMIZE THE APP");
