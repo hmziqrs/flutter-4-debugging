@@ -91,7 +91,6 @@ jobs:
           flutter config --enable-macos-desktop
           flutter config --no-enable-android
           flutter pub get
-          flutter precache
         # flutter build macos --release
         # cd build/macos/Build/Products/Release
         # ditto -c -k --sequesterRsrc --keepParent wowo.app macos-release.zip
@@ -130,7 +129,7 @@ jobs:
       - name: Run driver
         run: |
           cd app
-          sudo flutter drive -t test_driver/app.dart -d mac --dart-define="PLATFORM=macos"
+          flutter drive -t test_driver/app.dart -d mac --dart-define="PLATFORM=macos"
 
       - name: Add timestamp
         run: |
