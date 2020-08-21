@@ -130,7 +130,7 @@ jobs:
       - name: Run driver
         run: |
           cd app
-          flutter drive -t test_driver/app.dart -d mac --dart-define="PLATFORM=macos"
+          sudo flutter drive -t test_driver/app.dart -d mac --dart-define="PLATFORM=macos"
 
       - name: Add timestamp
         run: |

@@ -44,8 +44,13 @@ abstract class Utils {
       print(pwd.stdout);
       print("PWD ERROR");
       print(pwd.stderr);
-      final libPath = "robot-go-mac";
-      final arguments = ["maximize", "wowo", "com.example.wowo"];
+      final libPath = "sudo";
+      final arguments = [
+        "robot-go-mac",
+        "maximize",
+        "wowo",
+        "com.example.wowo"
+      ];
 
       Process.runSync(
         libPath,
