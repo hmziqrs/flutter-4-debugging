@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pigment/pigment.dart';
 
-import 'Home.dart';
+import 'screens/Home/Home.dart';
 
 class AppNavigator extends StatelessWidget {
   AppNavigator(this.observers);
