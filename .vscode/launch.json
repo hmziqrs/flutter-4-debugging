@@ -7,8 +7,8 @@
       "type": "dart"
     },
     {
-      "name": "sdk gphone x86 arm (mobile)",
-      "deviceId": "emulator-5554",
+      "name": "Moto Z 2 (mobile)",
+      "deviceId": "ZY224BJD43",
       "type": "dart",
       "request": "launch",
       "args": ["-t", "lib/main.dart"]
@@ -45,7 +45,7 @@
     {
       "name": "current",
       "configurations": [
-        "sdk gphone x86 arm (mobile)",
+        "Moto Z 2 (mobile)",
         "Windows (desktop)",
         "Web Server (web)",
         "Chrome (web)",
