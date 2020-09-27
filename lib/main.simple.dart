@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride;
 
-import 'package:wowo/getx/Navigator.dart';
+import 'package:wowo/simple/Navigator.dart';
 import 'package:wowo/io/io.dart';
 
 void main(List<String> args) {
